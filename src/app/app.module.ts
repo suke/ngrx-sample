@@ -10,9 +10,10 @@ import { animeReducer } from './anime/anime.reducer'
 import { AnimeEffects } from './anime/anime.effects'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
+import { TwitterTimelineComponent } from './components/twitter-timeline/twitter-timeline.component'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TwitterTimelineComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

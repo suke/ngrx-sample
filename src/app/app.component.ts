@@ -41,14 +41,14 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new GetFullYear({ year: 2019 }))
     this.store.dispatch(new GetSeason({ season: '2018_4' }))
 
-    this.cours$.subscribe(cours => {
-      console.log(cours)
-    })
-    this.animeFullYear$.subscribe(anime => {
-      console.log(anime)
-    })
-    this.animeSpecifySeason$.subscribe(anime => {
-      console.log(anime)
-    })
+    // this.cours$.subscribe(cours => {
+    //   console.log(cours)
+    // })
+    // this.animeFullYear$.subscribe(anime => {
+    //   console.log(anime)
+    // })
+    // this.animeSpecifySeason$.subscribe(anime => {
+    //   console.log(anime)
+    // })
   }
 }
