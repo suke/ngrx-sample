@@ -1,12 +1,16 @@
 import { Action } from '@ngrx/store'
-import { Cours } from '../types/anime'
+import { Cours, AnimeInfo, AnimeAllInfo } from '../types/anime'
 
 export enum ActionTypes {
   GetCours = '[Anime] GetCours',
   GetCoursSuccess = '[Anime] GetCours Success',
   GetCoursFailure = '[Anime] GetCours Failure',
   GetFullYear = '[Anime] GetFullYear',
-  GetSpecifiedCool = '[Anime] GetSpecifiedCool'
+  GetFullYearSuccess = '[Anime] GetFullYear Success',
+  GetFullYearFailure = '[Anime] GetFullYear Failure',
+  GetSeason = '[Anime] GetSeason',
+  GetSeasonSuccess = '[Anime] GetSeason Success',
+  GetSeasonFailure = '[Anime] GetSeason Failure'
 }
 
 export class GetCours implements Action {
@@ -24,10 +28,32 @@ export class GetCoursFailure implements Action {
 
 export class GetFullYear implements Action {
   readonly type = ActionTypes.GetFullYear
+  constructor(public payload: { year: number }) {}
 }
 
-export class GetSpecifiedCool implements Action {
-  readonly type = ActionTypes.GetSpecifiedCool
+export class GetFullYearSuccess implements Action {
+  readonly type = ActionTypes.GetFullYearSuccess
+  constructor(public payload: { year: number; animeInfo: AnimeInfo }) {}
+}
+
+export class GetFullYearFailure implements Action {
+  readonly type = ActionTypes.GetFullYearFailure
+}
+
+export class GetSeason implements Action {
+  readonly type = ActionTypes.GetSeason
+  constructor(public payload: { season: string }) {}
+}
+
+export class GetSeasonSuccess implements Action {
+  readonly type = ActionTypes.GetSeasonSuccess
+  constructor(
+    public payload: { season: string; animeAllInfo: AnimeAllInfo[] }
+  ) {}
+}
+
+export class GetSeasonFailure implements Action {
+  readonly type = ActionTypes.GetSeasonFailure
 }
 
 export type AnimeActions =
@@ -35,4 +61,8 @@ export type AnimeActions =
   | GetCoursSuccess
   | GetCoursFailure
   | GetFullYear
-  | GetSpecifiedCool
+  | GetFullYearSuccess
+  | GetFullYearFailure
+  | GetSeason
+  | GetSeasonSuccess
+  | GetSeasonFailure
