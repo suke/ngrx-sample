@@ -5,6 +5,7 @@ import { map, mergeMap, catchError, tap, merge } from 'rxjs/operators'
 
 import { AnimeService } from './anime.service'
 import { GetCours, GetFullYear, GetSeason, ActionTypes } from './anime.actions'
+import { buildSeason } from '../utils'
 
 @Injectable()
 export class AnimeEffects {
@@ -39,11 +40,11 @@ export class AnimeEffects {
   @Effect()
   loadSpecifyCool = this.actions$.pipe(
     ofType<GetSeason>(ActionTypes.GetSeason),
-    mergeMap(({ payload: { season } }) => {
-      return this.animeService.getSpecifySeason({ season }).pipe(
+    mergeMap(({ payload }) => {
+      return this.animeService.getSpecifySeason(payload).pipe(
         map(animeAllInfo => ({
           type: ActionTypes.GetSeasonSuccess,
-          payload: { season, animeAllInfo }
+          payload: { season: buildSeason(payload), animeAllInfo }
         })),
         catchError(() => of({ type: ActionTypes.GetSeasonFailure }))
       )

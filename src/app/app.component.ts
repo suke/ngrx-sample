@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   title = 'anime'
   cours$: Observable<Cours>
   animeFullYear$: Observable<AnimeInfo[]>
-  animeSpecifySeason$: Observable<AnimeInfo[]>
+  animeSpecifySeason$: Observable<AnimeAllInfo[]>
 
   constructor(private store: Store<{ anime: State['Anime'] }>) {
     this.cours$ = store.pipe(select(selectAnimeAllCours))
@@ -28,27 +28,23 @@ export class AppComponent implements OnInit {
       select(selectAnimeGetFullYear, { year: 2019 })
     )
     this.animeSpecifySeason$ = this.store.pipe(
-      select(selectAnimeGetFullYear, { year: 2019 })
-    )
-
-    this.animeSpecifySeason$ = this.store.pipe(
-      select(selectAnimeGetSeason, { season: '2018_4' })
+      select(selectAnimeGetSeason, { year: 2018, cool: 4 })
     )
   }
 
   ngOnInit() {
     this.store.dispatch(new GetCours())
     this.store.dispatch(new GetFullYear({ year: 2019 }))
-    this.store.dispatch(new GetSeason({ season: '2018_4' }))
+    this.store.dispatch(new GetSeason({ year: 2018, cool: 4 }))
 
-    // this.cours$.subscribe(cours => {
-    //   console.log(cours)
-    // })
-    // this.animeFullYear$.subscribe(anime => {
-    //   console.log(anime)
-    // })
-    // this.animeSpecifySeason$.subscribe(anime => {
-    //   console.log(anime)
-    // })
+    this.cours$.subscribe(cours => {
+      console.log(cours)
+    })
+    this.animeFullYear$.subscribe(anime => {
+      console.log(anime)
+    })
+    this.animeSpecifySeason$.subscribe(anime => {
+      console.log(anime)
+    })
   }
 }

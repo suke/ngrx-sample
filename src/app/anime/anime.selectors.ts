@@ -1,5 +1,6 @@
 import { createSelector } from '@ngrx/store'
 import { State } from '../types/state'
+import { buildSeason } from '../utils'
 
 export const selectAnime = (state: State['App']) => state.anime
 
@@ -17,7 +18,8 @@ export const selectAnimeGetFullYear = createSelector(
 
 export const selectAnimeGetSeason = createSelector(
   selectAnime,
-  (state: State['Anime'], { season }: { season: string }) => {
+  (state: State['Anime'], props: { year: number; cool: number }) => {
+    const season = buildSeason(props)
     return state.animeAllInfo[season] ? state.animeAllInfo[season] : []
   }
 )

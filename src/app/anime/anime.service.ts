@@ -13,12 +13,17 @@ export class AnimeService {
     return this.http.get<Cours>(`${this.endPoint}/master/cours`)
   }
 
-  getFullYear(year: number) {
+  getFullYear(year: string | number) {
     return this.http.get<AnimeInfo[]>(`${this.endPoint}/master/${year}`)
   }
 
-  getSpecifySeason({ season }: { season: string }) {
-    const [year, cool] = season.split('_')
+  getSpecifySeason({
+    year,
+    cool
+  }: {
+    year: string | number
+    cool: string | number
+  }) {
     return this.http.get<AnimeAllInfo[]>(
       `${this.endPoint}/master/${year}/${cool}`
     )

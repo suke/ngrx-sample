@@ -42,7 +42,7 @@ export class GetFullYearFailure implements Action {
 
 export class GetSeason implements Action {
   readonly type = ActionTypes.GetSeason
-  constructor(public payload: { season: string }) {}
+  constructor(public payload: { year: number; cool: number }) {}
 }
 
 export class GetSeasonSuccess implements Action {
