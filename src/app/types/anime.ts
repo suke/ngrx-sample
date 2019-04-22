@@ -24,4 +24,4 @@ export type AnimeAllInfo = {
   city_name: string;
 };
 
-export type AnimeInfo = Pick<AnimeAllInfo, "id" | "title">;
+export type AnimeInfo = Pick<AnimeAllInfo, 'id' | 'title'>;
